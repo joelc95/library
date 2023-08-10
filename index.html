@@ -15,8 +15,21 @@
 	<div id="modal" class="modal">
 		<div class="modal-content">
 			<span class="close">&times;</span>
-			<label for="book-title">title:</label>
-			<input type="text" name="book-title" id="book-title">
+			<form action="#" id="modal-form" class="modal-form">
+				<label for="title">title: </label>
+				<input type="text" id="title" name="title">
+				<br>
+				<label for="author">author: </label>
+				<input type="text" id="author" name="author">
+				<br>
+				<label for="pages">pages: </label>
+				<input type="number" name="pages" id="pages">
+				<br>
+				<label for="read">read? </label>
+				<input type="checkbox" name="read" id="read">
+				<br>
+				<input type="submit" id="submit-btn" value="Submit">
+			</form>
 		</div>
 	</div>
 </body>

@@ -5,9 +5,22 @@
 
 .header{
 	background-color: rgb(203, 203, 203);
-	padding: 10px;
+	padding: 12px;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
+}
+
+.header > button {
+	background: whitesmoke;
+	border: none;
+	padding: 12px;
+	border-radius: 25px;
+	transition: 0.2s;
+}
+
+.header > button:hover {
+	background: #b0b0b0;
+	cursor: pointer;
 }
 
 .modal {
