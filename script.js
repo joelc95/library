@@ -16,6 +16,7 @@ class Book {
 let modal = document.getElementById("modal")
 let modalContent = document.getElementById("modal-content")
 let modalClose = document.getElementsByClassName("close")[0]
+let errorMsg = document.getElementById('title-error-msg')
 let newBookButton = document.getElementById("book-btn")
 let submit = document.getElementById("submit-btn")
 let form = document.getElementById("modal-form")
@@ -43,23 +44,35 @@ const createNewBookObj = () => {
 	return new Book(title, author, pages, read)
 }
 
+// Check if title in input is already in Library
+const isBookInLibrary = () => {
+	for(let i = 0; i < myLibrary.length; i++) {
+		if(myLibrary[i].title === title.value) {
+			document.getElementById('title').style.border = 'red solid 1px'
+			errorMsg.style.display = 'inline-block'
+			return true
+		} else {
+			document.getElementById('title').style.border = 'none'
+			errorMsg.style.display = 'none'
+		}
+	}
+	return false
+}
+
 const addBookToLibrary = (e) => {
 	e.preventDefault()
 	let newBook = createNewBookObj();
 
-	for(let i = 0; i < myLibrary.length; i++) {
-		if(myLibrary[i].title === newBook.title) {
-			console.log("this book is already in your library")
-			console.log(myLibrary)
-			return;
-		}
-	}
 	myLibrary.push(newBook)
-	console.log(myLibrary)
+	modal.style.display = "none"
 	return;
 }
 
 submit.onclick = function(e) {
 	addBookToLibrary(e);
 	form.reset()
+}
+
+title.onchange = function() {
+	isBookInLibrary()
 }
