@@ -9,6 +9,10 @@ class Book {
 		this.pages = pages;
 		this.read = read;
 	}
+
+	updateReadState() {
+		this.read = !this.read
+	}
 }
 
 // UI Elements
@@ -20,6 +24,11 @@ let libErrorMsg = document.getElementById('title-error-msg')
 let newBookButton = document.getElementById("book-btn")
 let submit = document.getElementById("submit-btn")
 let form = document.getElementById("modal-form")
+let readCheckbox = document.getElementsByClassName('read-check')
+
+readCheckbox.onclick = function(e) {
+	e.target.updateReadState()
+}
 
 newBookButton.onclick = function() {
 	modal.style.display = 'block'
@@ -41,7 +50,6 @@ title.onchange = function() {
 
 submit.onclick = function(e) {
 	addBookToLibrary(e);
-	form.reset()
 }
 
 // Functions //
@@ -94,16 +102,29 @@ const createBookElement = (book) => {
 	const title = document.createElement('h3')
 	const author = document.createElement('p')
 	const pages = document.createElement('p')
+	const readContainer = document.createElement('div')
+	const readText = document.createElement('p')
+	const readCheck = document.createElement('input')
+	const pgbreak = document.createElement('br')
+	readCheck.setAttribute('type', 'checkbox')
 
 	title.innerText = `${book.title}`
-	author.innerText = `by ${book.author}`
-	pages.innerText = `${book.pages} pages`
+	book.author !== '' ? author.innerText = `by ${book.author}` : author.innerText = 'Author: unknown'
+	book.pages !== '' ? pages.innerText = `${book.pages} pages` : pages.innerText = 'Pages: unknown'
+	readText.innerText = "read? "
+	book.read && readCheck.setAttribute('checked', true)
 
 	container.appendChild(title)
 	container.appendChild(author)
 	container.appendChild(pages)
+	container.appendChild(pgbreak)
+	readContainer.appendChild(readText)
+	readContainer.appendChild(readCheck)
+	container.appendChild(readContainer)
 
 	container.classList.add('book-card')
+	readContainer.classList.add('read-info')
+	readCheck.classList.add('read-check')
 
 	document.getElementById('books-container').appendChild(container)
 }
