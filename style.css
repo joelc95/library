@@ -48,6 +48,7 @@
 .close {
 	font-size: 22px;
 	cursor: pointer;
+	width: max-content;
 }
 
 .input-label {
@@ -87,4 +88,24 @@ input[type=number] {
 	padding: 12px;
 	margin: 12px;
 	float: right;
+}
+
+#submit-btn:hover {
+	background-color: #b0b0b0;
+	cursor: pointer;
+}
+
+.books-container {
+	display: flex;
+	flex-wrap: wrap;
+	padding: 10%;
+}
+
+.book-card {
+	outline: black solid 2px;
+	border-radius: 15px;
+	height: 300px;
+	width: 250px;
+	padding: 12px;
+	margin: 10px;
 }

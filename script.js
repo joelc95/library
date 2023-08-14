@@ -16,7 +16,7 @@ class Book {
 let modal = document.getElementById("modal")
 let modalContent = document.getElementById("modal-content")
 let modalClose = document.getElementsByClassName("close")[0]
-let errorMsg = document.getElementById('title-error-msg')
+let libErrorMsg = document.getElementById('title-error-msg')
 let newBookButton = document.getElementById("book-btn")
 let submit = document.getElementById("submit-btn")
 let form = document.getElementById("modal-form")
@@ -35,6 +35,17 @@ window.onclick = function(e) {
 	}
 }
 
+title.onchange = function() {
+	isBookInLibrary()
+}
+
+submit.onclick = function(e) {
+	addBookToLibrary(e);
+	form.reset()
+}
+
+// Functions //
+
 // Use form data to create Book object
 const createNewBookObj = () => {
 	const title = document.getElementById('title').value
@@ -48,31 +59,63 @@ const createNewBookObj = () => {
 const isBookInLibrary = () => {
 	for(let i = 0; i < myLibrary.length; i++) {
 		if(myLibrary[i].title === title.value) {
+			console.log(myLibrary[i].title + ' is in the lib')
 			document.getElementById('title').style.border = 'red solid 1px'
-			errorMsg.style.display = 'inline-block'
+			libErrorMsg.style.display = 'inline-block'
 			return true
 		} else {
 			document.getElementById('title').style.border = 'none'
-			errorMsg.style.display = 'none'
+			libErrorMsg.style.display = 'none'
 		}
 	}
 	return false
 }
 
+// Push new book to myLibrary
 const addBookToLibrary = (e) => {
 	e.preventDefault()
 	let newBook = createNewBookObj();
+	if(isBookInLibrary()) {
+		console.log('error')
+		return -1;
+	}
 
 	myLibrary.push(newBook)
 	modal.style.display = "none"
+	clearContainer();
+	updateContainer();
+	console.log(myLibrary)
 	return;
 }
 
-submit.onclick = function(e) {
-	addBookToLibrary(e);
-	form.reset()
+// Create a html element for a book object
+const createBookElement = (book) => {
+	const container = document.createElement('div')
+	const title = document.createElement('h3')
+	const author = document.createElement('p')
+	const pages = document.createElement('p')
+
+	title.innerText = `${book.title}`
+	author.innerText = `by ${book.author}`
+	pages.innerText = `${book.pages} pages`
+
+	container.appendChild(title)
+	container.appendChild(author)
+	container.appendChild(pages)
+
+	container.classList.add('book-card')
+
+	document.getElementById('books-container').appendChild(container)
 }
 
-title.onchange = function() {
-	isBookInLibrary()
+// Reset book container to blank state
+const clearContainer = () => {
+	document.getElementById('books-container').innerHTML = ''
+}
+
+// Iterate thru lib, create book elements, and add them to container
+const updateContainer = () => {
+	for(let i = 0; i < myLibrary.length; i++) {
+		createBookElement(myLibrary[i])
+	}
 }
