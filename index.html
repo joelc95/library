@@ -14,32 +14,31 @@
 	</div>
 	<div id="modal" class="modal">
 		<div class="modal-content">
-			<span class="close">&times;</span>
-			<form action="#" id="modal-form" class="modal-form">
+			<!-- This div for some reason prevents the required input attribute from working -->
+			<!-- <div class="close">&times;</div> -->
+			<form id="modal-form" class="modal-form" action="#" method="#">
 				<label class="input-label" for="title">title: </label>
-				<input type="text" id="title" name="title">
+				<input type="text" id="title" name="title" required />
 				<p class="error-msg" id="title-error-msg">
 					This title is already in your library!
 				</p>
 				<br>
 				<label class="input-label" for="author">author: </label>
-				<input type="text" id="author" name="author">
+				<input type="text" id="author" name="author" />
 				<br>
 				<label class="input-label" for="pages">pages: </label>
-				<input type="number" name="pages" id="pages">
+				<input type="number" name="pages" id="pages" />
 				<br>
 				<label class="input-label" for="read">read? </label>
-				<input type="checkbox" name="read" id="read">
+				<input type="checkbox" name="read" id="read" />
 				<br>
-				<input type="submit" id="submit-btn" value="Submit">
+				<button type="submit" id="submit-btn">Submit</button>
 			</form>
 		</div>
 	</div>
+	
 	<div class="books-container" id="books-container">
-		<div class="book-card"></div>
-		<div class="book-card"></div>
-		<div class="book-card"></div>
-		<div class="book-card"></div>
+		
 	</div>
 </body>
 </html>

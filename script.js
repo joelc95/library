@@ -27,6 +27,8 @@ let form = document.getElementById("modal-form")
 let readCheckbox = document.getElementsByClassName('read-check')
 
 readCheckbox.onclick = function(e) {
+	console.log(e.target.parentNode)
+	console.log('hello')
 	e.target.updateReadState()
 }
 
@@ -81,18 +83,22 @@ const isBookInLibrary = () => {
 
 // Push new book to myLibrary
 const addBookToLibrary = (e) => {
+	// Prevent page refresh
 	e.preventDefault()
 	let newBook = createNewBookObj();
 	if(isBookInLibrary()) {
 		console.log('error')
 		return -1;
 	}
-
+	// Push book to lib
 	myLibrary.push(newBook)
+	// Hide modal
 	modal.style.display = "none"
+	// Clear book container
 	clearContainer();
+	// Add books from lib
 	updateContainer();
-	console.log(myLibrary)
+	
 	return;
 }
 
