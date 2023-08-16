@@ -36,9 +36,9 @@ newBookButton.onclick = function() {
 	modal.style.display = 'block'
 }
 
-modalClose.onclick = function(e) {
-	modal.style.display = "none"
-}
+// modalClose.onclick = function(e) {
+// 	modal.style.display = "none"
+// }
 
 window.onclick = function(e) {
 	if (e.target == modal) {
@@ -131,6 +131,14 @@ const createBookElement = (book) => {
 	container.classList.add('book-card')
 	readContainer.classList.add('read-info')
 	readCheck.classList.add('read-check')
+	readCheck.onclick = function(e) {
+		console.log(myLibrary)
+		for(let i = 0; i < myLibrary.length; i++) {
+			if(myLibrary[i].title === e.target.parentNode.parentNode.firstChild.innerHTML) {
+				myLibrary[i].updateReadState()
+			}
+		}
+	}
 
 	document.getElementById('books-container').appendChild(container)
 }
