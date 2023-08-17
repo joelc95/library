@@ -113,6 +113,8 @@ const createBookElement = (book) => {
 	const readCheck = document.createElement('input')
 	const pgbreak = document.createElement('br')
 	readCheck.setAttribute('type', 'checkbox')
+	const removeBtn = document.createElement('button')
+	removeBtn.innerText = 'remove book'
 
 	title.innerText = `${book.title}`
 	book.author !== '' ? author.innerText = `by ${book.author}` : author.innerText = 'Author: unknown'
@@ -127,6 +129,9 @@ const createBookElement = (book) => {
 	readContainer.appendChild(readText)
 	readContainer.appendChild(readCheck)
 	container.appendChild(readContainer)
+	container.appendChild(pgbreak)
+	container.appendChild(removeBtn)
+
 
 	container.classList.add('book-card')
 	readContainer.classList.add('read-info')
@@ -136,6 +141,17 @@ const createBookElement = (book) => {
 		for(let i = 0; i < myLibrary.length; i++) {
 			if(myLibrary[i].title === e.target.parentNode.parentNode.firstChild.innerHTML) {
 				myLibrary[i].updateReadState()
+			}
+		}
+	}
+	removeBtn.onclick = function(e) {
+		for(let i = 0; i < myLibrary.length; i++) {
+			if(myLibrary[i].title === e.target.parentNode.firstChild.innerHTML) {
+				myLibrary.splice(i, 1)
+				console.log(myLibrary)
+				clearContainer()
+				updateContainer()
+				return
 			}
 		}
 	}
