@@ -117,3 +117,28 @@ input[type=number] {
 	display: inline-flex;
 	border: red solid 1px;
 }
+
+.footer-container {
+	background-color: #eaeaea;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50px;
+	color: rgb(118, 118, 118);
+	opacity: 80%;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+a {
+	text-decoration: none;
+	transition: linear 0.3s;
+	color: rgb(35, 35, 35);
+	opacity: 30%;
+}
+
+a:hover {
+	color: rgb(0, 0, 0);
+	opacity: 100%;
+}
