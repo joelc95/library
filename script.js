@@ -144,6 +144,7 @@ const createBookElement = (book) => {
 			}
 		}
 	}
+	removeBtn.classList.add('remove-btn')
 	removeBtn.onclick = function(e) {
 		for(let i = 0; i < myLibrary.length; i++) {
 			if(myLibrary[i].title === e.target.parentNode.firstChild.innerHTML) {
