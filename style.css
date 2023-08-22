@@ -11,7 +11,8 @@ body {
 }
 
 .header{
-	background-color: rgb(203, 203, 203);
+	background-color: rgb(226, 226, 226);
+	box-shadow: rgb(111, 111, 111) 0px 1px 4px;
 	padding: 12px;
 	display: flex;
 	justify-content: space-around;
@@ -112,7 +113,10 @@ input[type=number] {
 }
 
 .book-card {
-	outline: black solid 2px;
+	background-color: rgb(226, 226, 226);
+	box-shadow: rgb(111, 111, 111) 0px 0px 4px 1px;
+	display: flex;
+	flex-direction: column;
 	border-radius: 15px;
 	height: 300px;
 	width: 250px;
@@ -126,7 +130,9 @@ input[type=number] {
 }
 
 .remove-btn {
-	float: right;
+	align-self: flex-end;
+	justify-self: flex-end;
+	margin-top: 70%;
 	border-radius: 5px;
 	padding: 4px;
 	border: rgb(230, 83, 83) solid 2px;

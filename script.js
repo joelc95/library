@@ -27,8 +27,6 @@ let form = document.getElementById("modal-form")
 let readCheckbox = document.getElementsByClassName('read-check')
 
 readCheckbox.onclick = function(e) {
-	console.log(e.target.parentNode)
-	console.log('hello')
 	e.target.updateReadState()
 }
 
@@ -69,7 +67,7 @@ const createNewBookObj = () => {
 const isBookInLibrary = () => {
 	for(let i = 0; i < myLibrary.length; i++) {
 		if(myLibrary[i].title === title.value) {
-			console.log(myLibrary[i].title + ' is in the lib')
+			// console.log(myLibrary[i].title + ' is in the lib')
 			document.getElementById('title').style.border = 'red solid 1px'
 			libErrorMsg.style.display = 'inline-block'
 			return true
@@ -87,7 +85,6 @@ const addBookToLibrary = (e) => {
 	e.preventDefault()
 	let newBook = createNewBookObj();
 	if(isBookInLibrary()) {
-		console.log('error')
 		return -1;
 	}
 	// Push book to lib
@@ -137,7 +134,6 @@ const createBookElement = (book) => {
 	readContainer.classList.add('read-info')
 	readCheck.classList.add('read-check')
 	readCheck.onclick = function(e) {
-		console.log(myLibrary)
 		for(let i = 0; i < myLibrary.length; i++) {
 			if(myLibrary[i].title === e.target.parentNode.parentNode.firstChild.innerHTML) {
 				myLibrary[i].updateReadState()
@@ -149,7 +145,6 @@ const createBookElement = (book) => {
 		for(let i = 0; i < myLibrary.length; i++) {
 			if(myLibrary[i].title === e.target.parentNode.firstChild.innerHTML) {
 				myLibrary.splice(i, 1)
-				console.log(myLibrary)
 				clearContainer()
 				updateContainer()
 				return
